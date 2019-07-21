@@ -11,7 +11,8 @@
 ### How to Run: ###
 
 * Configure [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html):
-    ```$ aws configure
+    ```
+   $ aws configure
    AWS Access Key ID [None]: EXAMPLE
    AWS Secret Access Key [None]: EXAMPLEKEY
    Default region name [None]: us-east-1
@@ -27,4 +28,4 @@
 * ```npm install -s serverless-offline```
 * ```aws configure```
 * ```modify serverless.yml to match your own configuration```
-* ```write your code :computer:```
+* ```write your code```
