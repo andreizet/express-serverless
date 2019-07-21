@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Serverless</title>
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="form-group mt-5">
+            <label for="inputCountry">Country</label>
+            <input type="text" class="form-control" id="inputCountry" placeholder="Enter country" v-model="country" @keyup.enter="GetDetails()">
+        </div>
+        <button type="submit" class="btn btn-primary" @click="GetDetails()" :disabled="isDisabled">Submit</button>
+        <div v-if="result" class="mt-5">
+            <div v-if="result.code === 0">
+                <h3 class="text-success">Result:</h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Name: <strong>{{result.message.name}}</strong></li>
+                    <li class="list-group-item">Country Code: <strong>{{result.message.code}}</strong></li>
+                    <li class="list-group-item">Phone Code: <strong>{{result.message.dial_code}}</strong></li>
+                </ul>
+            </div>
+            <h3 v-else class="text-danger">
+                {{result.message}}
+            </h3>
+        </div>
+    </div>
+</body>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+        country: "",
+        result: null
+    },
+
+    computed: {
+      isDisabled() {
+        return this.country.length === 0;
+      }
+    },
+
+    methods: {
+      GetDetails() {
+        if(this.isDisabled)
+          return;
+
+        fetch(window.location.href + 'search-country?country=' + this.country)
+          .then(response => response.json())
+          .then(res => this.result = res);
+      }
+    }
+  })
+</script>
+
+</html>

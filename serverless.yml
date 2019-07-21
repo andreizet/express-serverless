@@ -1,0 +1,26 @@
+service: express-serverless
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  apiKeys:
+    - express-serverless-api-key
+  role: ARN_ROLE
+  region: us-east-1
+  memorySize: 2048
+  timeout: 30
+  vpc:
+    securityGroupIds:
+      - SG_ID
+    subnetIds:
+      - SUBNET_ID
+
+functions:
+  app:
+    handler: app.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+
+plugins:
+  - serverless-offline

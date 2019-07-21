@@ -1,0 +1,27 @@
+{
+  "name": "express-serverless",
+  "version": "1.0.0",
+  "description": "Express server running on AWS Lambda",
+  "main": "handler.js",
+  "scripts": {
+    "offline": "npm install && sls offline start",
+    "deploy": "npm install && sls deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreizet/express-serverless.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andreizet/express-serverless/issues"
+  },
+  "homepage": "https://github.com/andreizet/express-serverless#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "serverless-http": "^2.0.2",
+    "serverless-offline": "^5.8.0"
+  }
+}
